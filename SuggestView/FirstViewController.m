@@ -8,7 +8,12 @@
 
 #import "FirstViewController.h"
 
-@interface FirstViewController ()
+#import "FirstViewCell.h"
+#import "SuggestViewController.h"
+
+@interface FirstViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -22,6 +27,35 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)suggest:(UITextField *)textField {
+    [self performSegueWithIdentifier:@"SuggestSegue" sender:textField];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"FirstViewCell";
+    FirstViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Configure the cell...
+    [cell setDelegate:self];
+    
+    return cell;
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ( [[segue identifier] isEqualToString:@"next"] ) {
+        SuggestViewController *nextViewController = [segue destinationViewController];
+        nextViewController.searchText = [(UITextField *)sender text];
+    }
 }
 
 @end
