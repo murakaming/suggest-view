@@ -33,6 +33,12 @@
     [self performSegueWithIdentifier:@"SuggestSegue" sender:textField];
 }
 
+#pragma mark - public
+
+- (void)updateSearchText:(NSString *)searchText {
+    
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -54,7 +60,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ( [[segue identifier] isEqualToString:@"next"] ) {
         SuggestViewController *nextViewController = [segue destinationViewController];
+        nextViewController.delegate = self;
         nextViewController.searchText = [(UITextField *)sender text];
+        nextViewController.searchIndexPath = [_tableView indexPathForSelectedRow];
     }
 }
 

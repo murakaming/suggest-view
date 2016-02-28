@@ -10,6 +10,8 @@
 
 @interface SuggestViewController : UIViewController
 
+@property (weak, nonatomic) id delegate;
 @property (strong, nonatomic) NSString *searchText;
+@property (strong, nonatomic) NSIndexPath *searchIndexPath;
 
 @end

@@ -35,7 +35,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="ydC-wj-LNg" id="ELM-4v-eRr"/>
-                                                        <segue destination="MI1-iD-CAJ" kind="push" identifier="SuggestSegue" id="0hy-7V-DOX"/>
+                                                        <segue destination="MI1-iD-CAJ" kind="push" identifier="SuggestSegue" animates="NO" id="0hy-7V-DOX"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -92,9 +92,38 @@
                     <view key="view" contentMode="scaleToFill" id="HgP-u6-GDa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="phm-OF-CWT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="kpx-K5-rN2">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kpx-K5-rN2" id="xsx-Jv-D3j">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MI1-iD-CAJ" id="Hbp-ge-fT1"/>
+                                    <outlet property="delegate" destination="MI1-iD-CAJ" id="RzG-ub-AmE"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="phm-OF-CWT" firstAttribute="leading" secondItem="HgP-u6-GDa" secondAttribute="leading" id="8oV-my-fKk"/>
+                            <constraint firstAttribute="trailing" secondItem="phm-OF-CWT" secondAttribute="trailing" id="THy-sU-uNq"/>
+                            <constraint firstItem="h5w-fB-gae" firstAttribute="top" secondItem="phm-OF-CWT" secondAttribute="bottom" id="s3D-OD-rTZ"/>
+                            <constraint firstItem="phm-OF-CWT" firstAttribute="top" secondItem="HgP-u6-GDa" secondAttribute="topMargin" id="vZg-ej-RrP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rZi-Cc-MVX"/>
+                    <connections>
+                        <outlet property="tableView" destination="phm-OF-CWT" id="nQX-zP-Uf1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ul8-GQ-Gem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
